@@ -12,8 +12,10 @@ SOURCES += \
     main.cpp \
     MainWindow.cpp
 
+
 HEADERS += \
     MainWindow.hpp \
+    ui_KeyItem.h
 
 FORMS += \
     MainWindow.ui \
