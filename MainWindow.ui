@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <widget class="QLabel" name="labelCurrentButton">
+     <widget class="QLabel" name="labelCurrentKey">
       <property name="text">
        <string>Текущая кнопка</string>
       </property>
@@ -227,14 +227,14 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="labelAllButtons">
+     <widget class="QLabel" name="labelAllKeys">
       <property name="text">
        <string>Все кнопки</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QScrollArea" name="scrollAreaAllButtons">
+     <widget class="QScrollArea" name="scrollAreaAllKeys">
       <property name="widgetResizable">
        <bool>true</bool>
       </property>
@@ -347,10 +347,10 @@
      </widget>
     </item>
    </layout>
-   <zorder>scrollAreaAllButtons</zorder>
+   <zorder>scrollAreaAllKeys</zorder>
    <zorder>frameSingleButtonInfo</zorder>
-   <zorder>labelAllButtons</zorder>
-   <zorder>labelCurrentButton</zorder>
+   <zorder>labelAllKeys</zorder>
+   <zorder>labelCurrentKey</zorder>
    <zorder>buttonsFrame</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">

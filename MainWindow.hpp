@@ -2,6 +2,8 @@
 
 #include <QMainWindow>
 
+#include "ui_KeyItem.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -16,8 +18,9 @@ public:
   ~MainWindow();
 
 private slots:
-  void on_pushButton_clicked();
+  void on_pushButtonKeyCapture_clicked();
 
 private:
   Ui::MainWindow *ui;
+  ui_KeyItem keyItem;
 };

@@ -84,23 +84,28 @@ public:
   QMenuBar *menubar;
   QStatusBar *statusbar;
 
-  void setupUi(QMainWindow *MainWindow) {
-    frameSingleButtonInfo = new QFrame(centralwidget);
+  QFrame *getItemUI(QWidget *scrollArea) {
+    frameSingleButtonInfo = new QFrame(scrollArea);
     frameSingleButtonInfo->setObjectName(QString::fromUtf8("frameSingleButtonInfo"));
     frameSingleButtonInfo->setFrameShape(QFrame::StyledPanel);
     frameSingleButtonInfo->setFrameShadow(QFrame::Raised);
+
     horizontalLayout_2 = new QHBoxLayout(frameSingleButtonInfo);
     horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
     horizontalLayout = new QHBoxLayout();
     horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+
     groupBoxKey = new QGroupBox(frameSingleButtonInfo);
     groupBoxKey->setObjectName(QString::fromUtf8("groupBoxKey"));
+
     verticalLayout_3 = new QVBoxLayout(groupBoxKey);
     verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
     verticalLayout = new QVBoxLayout();
     verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+
     formLayoutKey = new QFormLayout();
     formLayoutKey->setObjectName(QString::fromUtf8("formLayoutKey"));
+
     labelKeyNumberHeader = new QLabel(groupBoxKey);
     labelKeyNumberHeader->setObjectName(QString::fromUtf8("labelKeyNumberHeader"));
 
@@ -148,6 +153,7 @@ public:
 
     radioButtonHold = new QRadioButton(groupBoxKeyType);
     radioButtonHold->setObjectName(QString::fromUtf8("radioButtonHold"));
+    radioButtonHold->setText("HOLD");
 
     verticalLayout_7->addWidget(radioButtonHold);
 
@@ -218,8 +224,52 @@ public:
 
     horizontalLayout_2->addLayout(horizontalLayout);
 
-    verticalLayout_2->addWidget(frameSingleButtonInfo);
+    //verticalLayout_2->addWidget(frameSingleButtonInfo);
+    retranslateUi();
+
+    return frameSingleButtonInfo;
   }  // setupUi
+
+  void retranslateUi() {
+    //MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+    groupBoxKey->setTitle(QCoreApplication::translate(
+        "MainWindow", "\320\232\320\275\320\276\320\277\320\272\320\260", nullptr));
+    labelKeyNumberHeader->setText(
+        QCoreApplication::translate("MainWindow", "\342\204\226", nullptr));
+    labelKeyNumberValue->setText(QCoreApplication::translate("MainWindow", "10", nullptr));
+    labelKeyNameHeader->setText(
+        QCoreApplication::translate("MainWindow", "\320\230\320\274\321\217", nullptr));
+    labelKeyCodeHeader->setText(
+        QCoreApplication::translate("MainWindow", "\320\232\320\276\320\264", nullptr));
+    labelKeyCodeValue->setText(QCoreApplication::translate("MainWindow", "8BC95F3D", nullptr));
+    lineEditKeyNameValue->setText(QCoreApplication::translate("MainWindow", "KeyUp", nullptr));
+    groupBoxKeyType->setTitle(
+        QCoreApplication::translate("MainWindow", "\320\242\320\270\320\277", nullptr));
+    radioButtonToggle->setText(QCoreApplication::translate("MainWindow", "TOGGLE", nullptr));
+    radioButtonHold->setText(QCoreApplication::translate("MainWindow", "HOLD", nullptr));
+    radioButtonRepeat->setText(QCoreApplication::translate("MainWindow", "REPEAT", nullptr));
+    groupBoxKeyPinAction->setTitle(QCoreApplication::translate("MainWindow",
+        "\320\235\320\276\320\266\320\272\320\260  / "
+        "\320\224\320\265\320\271\321\201\321\202\320\262\320\270\320\265",
+        nullptr));
+    comboBoxPinNumber->setItemText(0, QCoreApplication::translate("MainWindow", "P1", nullptr));
+    comboBoxPinNumber->setItemText(1, QCoreApplication::translate("MainWindow", "P2", nullptr));
+    comboBoxPinNumber->setItemText(2, QCoreApplication::translate("MainWindow", "P3", nullptr));
+    comboBoxPinNumber->setItemText(3, QCoreApplication::translate("MainWindow", "P4", nullptr));
+    comboBoxPinNumber->setItemText(4, QCoreApplication::translate("MainWindow", "P5", nullptr));
+    comboBoxPinNumber->setItemText(5, QCoreApplication::translate("MainWindow", "P6", nullptr));
+    comboBoxPinNumber->setItemText(6, QCoreApplication::translate("MainWindow", "P7", nullptr));
+
+    labelHeaderEven->setText(QCoreApplication::translate("MainWindow", "=", nullptr));
+    labelDelta->setText(QCoreApplication::translate("MainWindow", "d =", nullptr));
+    comboBoxValueRef->setItemText(
+        0, QCoreApplication::translate("MainWindow", "\342\204\22610 KeyUp", nullptr));
+    comboBoxValueRef->setItemText(
+        1, QCoreApplication::translate("MainWindow", "\342\204\22611 KeyDown", nullptr));
+    comboBoxValueRef->setItemText(
+        2, QCoreApplication::translate("MainWindow", "\342\204\22612 KeyLeft", nullptr));
+
+  }  // retranslateUi
 };
 
 #endif  // UI_KEYITEM_H
