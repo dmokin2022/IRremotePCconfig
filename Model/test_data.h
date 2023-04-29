@@ -24,7 +24,5 @@ key_data_t test_data[] = {
     {18, 0x77777777, "KEY_7", MODE_TOGGLE, 99, 170, +1, 0},
     {19, 0x88888888, "KEY_8", MODE_TOGGLE, 100, 180, +1, 0},
     {21, 0x99999999, "KEY_9", MODE_TOGGLE, 101, 190, +1, 0},
-
-
 };
 

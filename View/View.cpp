@@ -7,7 +7,7 @@
 ********************************************************************************/
 
 #include "View.hpp"
-
+#include "ViewItem.hpp"
 
 View::View(QScrollArea *scrollArea, QVBoxLayout *verticalLayout)
 {
@@ -18,7 +18,9 @@ View::View(QScrollArea *scrollArea, QVBoxLayout *verticalLayout)
 void View::showModel()
 {
     for (auto &key : model.keys) {
-        QFrame *newKeyFrame = this->addKeyItemToUI(key);
-        verticalLayout1->addWidget(newKeyFrame);
+        ViewItem *item = new ViewItem(key, model, scrollArea);
+
+        //QFrame *newKeyFrame = this->addKeyItemToUI(key);
+        verticalLayout1->addWidget(item->getViewItemFrame());
     }
 }

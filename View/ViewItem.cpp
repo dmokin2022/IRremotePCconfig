@@ -7,6 +7,7 @@
 ********************************************************************************/
 
 #include "ViewItem.hpp"
+#include <QDebug>
 
 
 ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea)
@@ -41,13 +42,13 @@ ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea
     // Подпись поля с номером кнопки
     labelKeyNumberHeader = new QLabel(groupBoxKey);
     labelKeyNumberHeader->setObjectName(QString::fromUtf8("labelKeyNumberHeader"));
-
     formLayoutKey->setWidget(0, QFormLayout::LabelRole, labelKeyNumberHeader);
 
     // НОМЕР КНОПКИ
     labelKeyNumberValue = new QLabel(groupBoxKey);
     labelKeyNumberValue->setObjectName(QString::fromUtf8("labelKeyNumberValue"));
     formLayoutKey->setWidget(0, QFormLayout::FieldRole, labelKeyNumberValue);
+    qDebug() << key.id;
     labelKeyNumberValue->setText(QString::number(key.id));
 
     // Подпись поля с именем кнопки
@@ -103,6 +104,12 @@ ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea
 
     horizontalLayout->addWidget(groupBoxKeyType);
 
+    switch(key.mode) {
+        case MODE_TOGGLE: radioButtonToggle->setChecked(true); break;
+        case MODE_REPEAT: radioButtonToggle->setChecked(true); break;
+        case MODE_HOLD: radioButtonToggle->setChecked(true); break;
+    }
+
     // Третья колонка = Информация о ножке и значении выводимой/изменяемой переменной
     groupBoxKeyPinAction = new QGroupBox(frameSingleButtonInfo);
     groupBoxKeyPinAction->setObjectName(QString::fromUtf8("groupBoxKeyPinAction"));
@@ -119,13 +126,6 @@ ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea
     comboBoxPinNumber = new QComboBox(groupBoxKeyPinAction);
     // ...заполнение выпадающего списка
     fillComboBoxWithAvailablePins(comboBoxPinNumber);
-    comboBoxPinNumber->addItem(QString());
-    comboBoxPinNumber->addItem(QString());
-    comboBoxPinNumber->addItem(QString());
-    comboBoxPinNumber->addItem(QString());
-    comboBoxPinNumber->addItem(QString());
-    comboBoxPinNumber->addItem(QString());
-    comboBoxPinNumber->addItem(QString());
     comboBoxPinNumber->setObjectName(QString::fromUtf8("comboBoxPinNumber"));
 
     horizontalLayoutPinAndValue->addWidget(comboBoxPinNumber);
@@ -164,9 +164,6 @@ ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea
     // Ссылка на переменную другой кнопки
     comboBoxValueRef = new QComboBox(groupBoxKeyPinAction);
     fillComboBoxWithOtherButtons(comboBoxValueRef);
-    comboBoxValueRef->addItem(QString());
-    comboBoxValueRef->addItem(QString());
-    comboBoxValueRef->addItem(QString());
     comboBoxValueRef->setObjectName(QString::fromUtf8("comboBoxValueRef"));
 
     verticalLayout_6->addWidget(comboBoxValueRef);
@@ -244,7 +241,7 @@ void ViewItem::fillComboBoxWithAvailablePins(QComboBox *comboBoxPinNumber)
 
 void ViewItem::fillComboBoxWithOtherButtons(QComboBox *comboBoxValueRef)
 {
-    for (auto key : this->model.keys) {
+    for (auto key : model->keys) {
         comboBoxValueRef->addItem(key.name);
     }
 }

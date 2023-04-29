@@ -5,8 +5,7 @@
 **
 ********************************************************************************/
 
-#ifndef UI_KEYITEM_H
-#define UI_KEYITEM_H
+#pragma once
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -27,6 +26,7 @@
 #include <QtWidgets/QWidget>
 
 #include "Model/IRremoteModel.hpp"
+
 
 class View {
 public:
@@ -95,5 +95,4 @@ private:
   QStatusBar *statusbar;
 };
 
-#endif  // UI_KEYITEM_H
 

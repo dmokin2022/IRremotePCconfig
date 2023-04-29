@@ -5,8 +5,7 @@
 **
 ********************************************************************************/
 
-#ifndef UI_KEYITEM_H
-#define UI_KEYITEM_H
+#pragma once
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -77,27 +76,6 @@ private:
   QScrollArea *scrollAreaAllButtons;
   QWidget *scrollAreaWidgetContents;
   QVBoxLayout *verticalLayout_9;
-
-  // Элементы кнопок
-  QFrame *buttonsFrame;
-  QHBoxLayout *horizontalLayout_11;
-  QGroupBox *groupBoxKeyOps;
-  QVBoxLayout *verticalLayout_13;
-  QPushButton *pushButtonKeyCapture;
-  QPushButton *pushButtonKeysApply;
-  QPushButton *pushButtonKeyDelete;
-  QPushButton *pushButtonKeysClear;
-  QGroupBox *groupBoxEEPROMOps;
-  QVBoxLayout *verticalLayout_14;
-  QPushButton *pushButtonEEPROMSave;
-  QPushButton *pushButtonEEPROMRestore;
-  QGroupBox *groupBoxFileOps;
-  QVBoxLayout *verticalLayout_15;
-  QPushButton *pushButtonFileSave;
-  QPushButton *pushButtonFileLoad;
-  QMenuBar *menubar;
-  QStatusBar *statusbar;
 };
 
-#endif  // UI_KEYITEM_H
 
