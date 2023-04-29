@@ -22,5 +22,5 @@ private slots:
 
 private:
   Ui::MainWindow *ui;
-  View keyItem;
+  View* view;
 };

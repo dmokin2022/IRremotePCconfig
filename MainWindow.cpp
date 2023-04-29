@@ -5,12 +5,16 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
+
+  view = new View(ui->scrollAreaAllKeys, ui->verticalLayout_9);
 }
 
 MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::on_pushButtonKeyCapture_clicked() {
   //
-  QFrame *newKeyFrame = keyItem.getItemUI(ui->scrollAreaWidgetContents);
-  ui->verticalLayout_9->addWidget(newKeyFrame);
+//  QFrame *newKeyFrame = view.getItemUI(ui->scrollAreaWidgetContents);
+    //ui->verticalLayout_9->addWidget(newKeyFrame);
+
+  view->showModel();
 }

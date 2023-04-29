@@ -3,7 +3,6 @@
 **
 ** Created by: Qt User Interface Compiler version 5.15.7
 **
-** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
 #ifndef UI_KEYITEM_H
@@ -27,10 +26,28 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
+#include "Model/IRremoteModel.hpp"
+
 class View {
 public:
+  View(QScrollArea* scrollArea, QVBoxLayout *verticalLayout);
+  QFrame *getItemUI(QWidget *scrollArea);
+
+  QFrame *addKeyItemToUI(key_data_t data);
+  void fillItemUIWith(key_data_t data);
+  void retranslateUi();
+
+    void showModel();
+
+private:
+  IRremoteModel model;
+  QScrollArea* scrollArea;
+  QVBoxLayout *verticalLayout1;
+
+  void fillComboBoxWithAvailablePins(QComboBox *comboBoxPinNumber);
+  void fillComboBoxWithOtherButtons(QComboBox *comboBoxValueRef);
+
   QWidget *centralwidget;
-  QVBoxLayout *verticalLayout_2;
   QLabel *labelCurrentButton;
   QFrame *frameSingleButtonInfo;
   QHBoxLayout *horizontalLayout_2;
@@ -65,6 +82,8 @@ public:
   QScrollArea *scrollAreaAllButtons;
   QWidget *scrollAreaWidgetContents;
   QVBoxLayout *verticalLayout_9;
+
+  // Элементы кнопок
   QFrame *buttonsFrame;
   QHBoxLayout *horizontalLayout_11;
   QGroupBox *groupBoxKeyOps;
@@ -83,9 +102,7 @@ public:
   QPushButton *pushButtonFileLoad;
   QMenuBar *menubar;
   QStatusBar *statusbar;
-
-  QFrame *getItemUI(QWidget *scrollArea);
-  void retranslateUi();
 };
 
 #endif  // UI_KEYITEM_H
+
