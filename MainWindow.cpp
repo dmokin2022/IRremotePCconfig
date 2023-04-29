@@ -1,6 +1,6 @@
 #include "MainWindow.hpp"
 
-#include "ui_KeyItem.h"
+#include "View/ui_KeyItem.h"
 #include "ui_MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {

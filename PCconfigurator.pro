@@ -15,10 +15,10 @@ SOURCES += \
 
 HEADERS += \
     MainWindow.hpp \
-    ui_KeyItem.h \
     Model/config.h \
     Model/IRremoteModel.hpp \
-    Model/test_data.h
+    Model/test_data.h \
+    Veiw/ui_KeyItem.h
 
 FORMS += \
     MainWindow.ui

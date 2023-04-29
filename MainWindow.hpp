@@ -2,7 +2,7 @@
 
 #include <QMainWindow>
 
-#include "ui_KeyItem.h"
+#include "View/ui_KeyItem.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
