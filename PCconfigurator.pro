@@ -10,16 +10,19 @@ CONFIG += c++17
 
 SOURCES += \
     View/View.cpp \
+    View/ViewItem.cpp \
     main.cpp \
     MainWindow.cpp \
     Model/IRremoteModel.cpp
+
 
 HEADERS += \
     MainWindow.hpp \
     Model/config.h \
     Model/IRremoteModel.hpp \
     Model/test_data.h \
-    View/View.hpp
+    View/View.hpp \
+    View/ViewItem.hpp
 
 FORMS += \
     MainWindow.ui

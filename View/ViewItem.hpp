@@ -28,15 +28,19 @@
 
 #include "Model/IRremoteModel.hpp"
 
-class View {
+class ViewItem {
 public:
-  View(QScrollArea* scrollArea, QVBoxLayout *verticalLayout);
-  void showModel();
+  ViewItem(key_data_t key, IRremoteModel& model, QScrollArea *scrollArea);
+  QFrame* getViewItemFrame();
+  void retranslateUi();
 
 private:
-  IRremoteModel model;
-  QScrollArea* scrollArea;
-  QVBoxLayout *verticalLayout1;
+  IRremoteModel *model;
+
+  void fillComboBoxWithAvailablePins(QComboBox *comboBoxPinNumber);
+  void fillComboBoxWithOtherButtons(QComboBox *comboBoxValueRef);
+
+  QScrollArea *scrollArea;
 
   QWidget *centralwidget;
   QLabel *labelCurrentButton;
