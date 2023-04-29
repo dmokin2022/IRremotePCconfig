@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    View/View.cpp \
     main.cpp \
     MainWindow.cpp \
     Model/IRremoteModel.cpp
@@ -18,7 +19,7 @@ HEADERS += \
     Model/config.h \
     Model/IRremoteModel.hpp \
     Model/test_data.h \
-    Veiw/ui_KeyItem.h
+    View/View.hpp
 
 FORMS += \
     MainWindow.ui

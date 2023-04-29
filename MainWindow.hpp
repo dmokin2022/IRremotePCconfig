@@ -2,7 +2,7 @@
 
 #include <QMainWindow>
 
-#include "View/ui_KeyItem.h"
+#include "View/View.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -22,5 +22,5 @@ private slots:
 
 private:
   Ui::MainWindow *ui;
-  ui_KeyItem keyItem;
+  View keyItem;
 };
