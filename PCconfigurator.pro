@@ -10,15 +10,18 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    MainWindow.cpp
-
+    MainWindow.cpp \
+    Model/IRremoteModel.cpp
 
 HEADERS += \
     MainWindow.hpp \
-    ui_KeyItem.h
+    ui_KeyItem.h \
+    Model/config.h \
+    Model/IRremoteModel.hpp \
+    Model/test_data.h
 
 FORMS += \
-    MainWindow.ui \
+    MainWindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
