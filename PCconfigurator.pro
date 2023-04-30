@@ -9,21 +9,28 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Model/LinkedDevice.cpp \
     View/View.cpp \
     View/ViewItem.cpp \
     main.cpp \
     MainWindow.cpp \
-    Model/IRremoteModel.cpp
+    Model/IRremoteModel.cpp \
+    #serialport/qserialport.cpp \
+    #serialport/qserialport_win.cpp \
+    #serialport/qserialportinfo.cpp \
+    #serialport/qserialportinfo_win.cpp \
 
 
 HEADERS += \
     MainWindow.hpp \
+    Model/LinkedDevice.h \
     Model/config.h \
     Model/IRremoteModel.hpp \
     Model/test_data.h \
     Model/key_data.h \
     View/View.hpp \
-    View/ViewItem.hpp
+    View/ViewItem.hpp \
+    #serialport/qserialport.h
 
 FORMS += \
     MainWindow.ui
@@ -32,3 +39,4 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+QT += serialport
