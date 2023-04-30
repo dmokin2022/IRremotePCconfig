@@ -42,25 +42,24 @@ ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea
     // Подпись поля с номером кнопки
     labelKeyNumberHeader = new QLabel(groupBoxKey);
     labelKeyNumberHeader->setObjectName(QString::fromUtf8("labelKeyNumberHeader"));
+    labelKeyNumberHeader->setText("№");
     formLayoutKey->setWidget(0, QFormLayout::LabelRole, labelKeyNumberHeader);
 
     // НОМЕР КНОПКИ
     labelKeyNumberValue = new QLabel(groupBoxKey);
     labelKeyNumberValue->setObjectName(QString::fromUtf8("labelKeyNumberValue"));
     formLayoutKey->setWidget(0, QFormLayout::FieldRole, labelKeyNumberValue);
-    qDebug() << key.id;
-    labelKeyNumberValue->setText(QString::number(key.id));
 
     // Подпись поля с именем кнопки
     labelKeyNameHeader = new QLabel(groupBoxKey);
     labelKeyNameHeader->setObjectName(QString::fromUtf8("labelKeyNameHeader"));
-
+    labelKeyNameHeader->setText("Название: ");
     formLayoutKey->setWidget(1, QFormLayout::LabelRole, labelKeyNameHeader);
 
     // Подпись кода кнопки
     labelKeyCodeHeader = new QLabel(groupBoxKey);
     labelKeyCodeHeader->setObjectName(QString::fromUtf8("labelKeyCodeHeader"));
-
+    labelKeyCodeHeader->setText("Код HEX: ");
     formLayoutKey->setWidget(2, QFormLayout::LabelRole, labelKeyCodeHeader);
 
     // КОД КНОПКИ
@@ -73,7 +72,7 @@ ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea
     // ИМЯ КНОПКИ
     lineEditKeyNameValue = new QLineEdit(groupBoxKey);
     lineEditKeyNameValue->setObjectName(QString::fromUtf8("lineEditKeyNameValue"));
-    lineEditKeyNameValue->setText(key.name);
+    //lineEditKeyNameValue->setText(key.name);
     formLayoutKey->setWidget(1, QFormLayout::FieldRole, lineEditKeyNameValue);
 
     verticalLayout->addLayout(formLayoutKey);
@@ -90,25 +89,21 @@ ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea
     // Радиокнопка TOGGLE
     radioButtonToggle = new QRadioButton(groupBoxKeyType);
     radioButtonToggle->setObjectName(QString::fromUtf8("radioButtonToggle"));
+    radioButtonToggle->setText("TOGGLE");
     verticalLayout_7->addWidget(radioButtonToggle);
 
     // Радиокнопка HOLD
     radioButtonHold = new QRadioButton(groupBoxKeyType);
     radioButtonHold->setObjectName(QString::fromUtf8("radioButtonHold"));
+    radioButtonHold->setText("HOLD");
     verticalLayout_7->addWidget(radioButtonHold);
 
     // Радиокнопка REPEAT
     radioButtonRepeat = new QRadioButton(groupBoxKeyType);
     radioButtonRepeat->setObjectName(QString::fromUtf8("radioButtonRepeat"));
+    radioButtonRepeat->setText("REPEAT");
     verticalLayout_7->addWidget(radioButtonRepeat);
-
     horizontalLayout->addWidget(groupBoxKeyType);
-
-    switch(key.mode) {
-        case MODE_TOGGLE: radioButtonToggle->setChecked(true); break;
-        case MODE_REPEAT: radioButtonToggle->setChecked(true); break;
-        case MODE_HOLD: radioButtonToggle->setChecked(true); break;
-    }
 
     // Третья колонка = Информация о ножке и значении выводимой/изменяемой переменной
     groupBoxKeyPinAction = new QGroupBox(frameSingleButtonInfo);
@@ -118,27 +113,24 @@ ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea
 
     verticalLayoutPinDelta = new QVBoxLayout();
     verticalLayoutPinDelta->setObjectName(QString::fromUtf8("verticalLayoutPinDelta"));
-
     horizontalLayoutPinAndValue = new QHBoxLayout();
     horizontalLayoutPinAndValue->setObjectName(QString::fromUtf8("horizontalLayoutPinAndValue"));
 
     // Выпадающий список с названимяи/номерами ножек
     comboBoxPinNumber = new QComboBox(groupBoxKeyPinAction);
-    // ...заполнение выпадающего списка
-    fillComboBoxWithAvailablePins(comboBoxPinNumber);
     comboBoxPinNumber->setObjectName(QString::fromUtf8("comboBoxPinNumber"));
-
     horizontalLayoutPinAndValue->addWidget(comboBoxPinNumber);
 
     // Знак "="
     labelHeaderEven = new QLabel(groupBoxKeyPinAction);
     labelHeaderEven->setObjectName(QString::fromUtf8("labelHeaderEven"));
+    labelHeaderEven->setText("=");
     horizontalLayoutPinAndValue->addWidget(labelHeaderEven);
 
     // Значение переменной для вывода в пин (ШИМ)
     lineEditValue = new QLineEdit(groupBoxKeyPinAction);
     lineEditValue->setObjectName(QString::fromUtf8("lineEditValue"));
-    lineEditValue->setText(QString::number(key.var_val));
+    //lineEditValue->setText(QString::number(key.var_val));
     horizontalLayoutPinAndValue->addWidget(lineEditValue);
 
 
@@ -150,12 +142,13 @@ ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea
     // Подпись поля delta значения ("delta=")
     labelDelta = new QLabel(groupBoxKeyPinAction);
     labelDelta->setObjectName(QString::fromUtf8("labelDelta"));
+    labelDelta->setText("delta (+/-) =");
     horizontalLayoutDelta->addWidget(labelDelta);
 
     // Поле редактора дельта значения
     lineEditDeltaIncDec = new QLineEdit(groupBoxKeyPinAction);
     lineEditDeltaIncDec->setObjectName(QString::fromUtf8("lineEditDeltaIncDec"));
-    lineEditDeltaIncDec->setText(QString::number(key.var_step));
+    //lineEditDeltaIncDec->setText(QString::number(key.var_step));
     horizontalLayoutDelta->addWidget(lineEditDeltaIncDec);
     verticalLayoutPinDelta->addLayout(horizontalLayoutDelta);
 
@@ -163,7 +156,6 @@ ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea
 
     // Ссылка на переменную другой кнопки
     comboBoxValueRef = new QComboBox(groupBoxKeyPinAction);
-    fillComboBoxWithOtherButtons(comboBoxValueRef);
     comboBoxValueRef->setObjectName(QString::fromUtf8("comboBoxValueRef"));
 
     verticalLayout_6->addWidget(comboBoxValueRef);
@@ -172,9 +164,9 @@ ViewItem::ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea
 
     horizontalLayout_2->addLayout(horizontalLayout);
 
-    // Выставление текстовых значений
-    retranslateUi();
-
+    // Выставление текстовых значений оформления
+    //retranslateUi();
+    setViewDataFields(key);
 }
 
 QFrame *ViewItem::getViewItemFrame()
@@ -187,13 +179,10 @@ QFrame *ViewItem::getViewItemFrame()
         "MainWindow", "\320\232\320\275\320\276\320\277\320\272\320\260", nullptr));
     labelKeyNumberHeader->setText(
         QCoreApplication::translate("MainWindow", "\342\204\226", nullptr));
-    labelKeyNumberValue->setText(QCoreApplication::translate("MainWindow", "10", nullptr));
     labelKeyNameHeader->setText(
         QCoreApplication::translate("MainWindow", "\320\230\320\274\321\217", nullptr));
     labelKeyCodeHeader->setText(
         QCoreApplication::translate("MainWindow", "\320\232\320\276\320\264", nullptr));
-    labelKeyCodeValue->setText(QCoreApplication::translate("MainWindow", "8BC95F3D", nullptr));
-    lineEditKeyNameValue->setText(QCoreApplication::translate("MainWindow", "KeyUp", nullptr));
     groupBoxKeyType->setTitle(
         QCoreApplication::translate("MainWindow", "\320\242\320\270\320\277", nullptr));
     radioButtonToggle->setText(QCoreApplication::translate("MainWindow", "TOGGLE", nullptr));
@@ -206,6 +195,26 @@ QFrame *ViewItem::getViewItemFrame()
 
     labelHeaderEven->setText(QCoreApplication::translate("MainWindow", "=", nullptr));
     labelDelta->setText(QCoreApplication::translate("MainWindow", "d =", nullptr));
+  }
+
+  void ViewItem::setViewDataFields(key_data_t key)
+  {
+      labelKeyNumberValue->setText(QString::number(key.id));
+      labelKeyCodeValue->setText(QString("%1").arg(key.code, 8, 16).toUpper());
+      lineEditKeyNameValue->setText(key.name);
+
+      setModeRadioButton(key.mode);
+
+      // ...заполнение выпадающего списка доступных ножек
+      fillComboBoxWithAvailablePins(comboBoxPinNumber);
+      comboBoxPinNumber->setCurrentIndex(key.pin);
+
+      lineEditValue->setText(QString::number(key.var_val));
+      lineEditDeltaIncDec->setText(QString::number(key.var_step));
+
+      // ...заполнение выпадающего списка доступных кнопок
+      fillComboBoxWithOtherButtons(comboBoxValueRef);
+      comboBoxValueRef->setCurrentIndex(key.var_ref);
   }
 
 
@@ -243,5 +252,27 @@ void ViewItem::fillComboBoxWithOtherButtons(QComboBox *comboBoxValueRef)
 {
     for (auto key : model->keys) {
         comboBoxValueRef->addItem(key.name);
+    }
+}
+
+void ViewItem::setModeRadioButton(int mode)
+{
+    switch(mode) {
+        case MODE_TOGGLE: {
+          radioButtonToggle->setChecked(true);
+          radioButtonRepeat->setChecked(false);
+          radioButtonHold->setChecked(false);
+    } break;
+    case MODE_REPEAT: {
+        radioButtonToggle->setChecked(false);
+        radioButtonRepeat->setChecked(true);
+        radioButtonHold->setChecked(false);
+
+    } break;
+    case MODE_HOLD: {
+        radioButtonToggle->setChecked(false);
+        radioButtonRepeat->setChecked(false);
+        radioButtonHold->setChecked(true);
+    } break;
     }
 }

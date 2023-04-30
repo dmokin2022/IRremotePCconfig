@@ -21,6 +21,7 @@ HEADERS += \
     Model/config.h \
     Model/IRremoteModel.hpp \
     Model/test_data.h \
+    Model/key_data.h \
     View/View.hpp \
     View/ViewItem.hpp
 

@@ -32,12 +32,14 @@ public:
   ViewItem(key_data_t key, IRremoteModel& model, QScrollArea *scrollArea);
   QFrame* getViewItemFrame();
   void retranslateUi();
+  void setViewDataFields(key_data_t key);
 
 private:
   IRremoteModel *model;
 
   void fillComboBoxWithAvailablePins(QComboBox *comboBoxPinNumber);
   void fillComboBoxWithOtherButtons(QComboBox *comboBoxValueRef);
+  void setModeRadioButton(int mode);
 
   QScrollArea *scrollArea;
 
