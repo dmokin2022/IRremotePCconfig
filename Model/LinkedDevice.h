@@ -3,6 +3,7 @@
 
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
+#include "Model/key_data.h"
 
 class LinkedDevice: public QObject
 {
@@ -19,9 +20,14 @@ private:
     void initPort(QString portName);
 
     void sendCommand(QString command);
+    QList<QMap<QString, QVariant> > getParsedResponse(QString response);
+    QString lastCommand;
+
+
 
 private slots:
     void onSerialPortDataReceived();
+
 
 };
 

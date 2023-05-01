@@ -217,6 +217,36 @@ QFrame *ViewItem::getViewItemFrame()
       comboBoxValueRef->setCurrentIndex(key.var_ref);
   }
 
+  void ViewItem::setViewDataFields(QMap<QString, QVariant> key) {
+      if (key.contains("id")) {
+        labelKeyNumberValue->setText(key["id"].toString());
+      }
+      if (key.contains("code")) {
+        labelKeyCodeValue->setText(key["code"].toString());
+      }
+      if (key.contains("name")) {
+        lineEditKeyNameValue->setText(key["name"].toString());
+      }
+      if (key.contains("mode")) {
+          setModeRadioButton(key["mode"].toString());
+      }
+      // ...заполнение выпадающего списка доступных ножек
+      fillComboBoxWithAvailablePins(comboBoxPinNumber);
+      if (key.contains("pin")) {
+          comboBoxPinNumber->setCurrentIndex(key["pin"].toString().toInt());
+      }
+      if (key.contains("val")) {
+        lineEditValue->setText(key["val"].toString());
+      }
+      if (key.contains("step")) {
+        lineEditDeltaIncDec->setText(key["step"].toString());
+      }
+      // ...заполнение выпадающего списка доступных кнопок
+      fillComboBoxWithOtherButtons(comboBoxValueRef);
+      if (key.contains("ref")) {
+        comboBoxValueRef->setCurrentIndex(key["ref"].toString().toInt());
+      }
+  }
 
 static QList<QString> pins{
     "A0",
@@ -275,4 +305,11 @@ void ViewItem::setModeRadioButton(int mode)
         radioButtonHold->setChecked(true);
     } break;
     }
+}
+
+void ViewItem::setModeRadioButton(const QString &mode)
+{
+    if (mode == "TOGGLE") { setModeRadioButton(MODE_TOGGLE); } else
+    if (mode == "HOLD") { setModeRadioButton(MODE_HOLD); } else
+   if (mode == "REPEAT") { setModeRadioButton(MODE_REPEAT); }
 }

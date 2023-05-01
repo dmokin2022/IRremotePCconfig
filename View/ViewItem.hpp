@@ -33,6 +33,7 @@ public:
   QFrame* getViewItemFrame();
   void retranslateUi();
   void setViewDataFields(key_data_t key);
+  void setViewDataFields(QMap<QString, QVariant> key);
 
 private:
   IRremoteModel *model;
@@ -40,6 +41,7 @@ private:
   void fillComboBoxWithAvailablePins(QComboBox *comboBoxPinNumber);
   void fillComboBoxWithOtherButtons(QComboBox *comboBoxValueRef);
   void setModeRadioButton(int mode);
+  void setModeRadioButton(const QString &mode);
 
   QScrollArea *scrollArea;
 

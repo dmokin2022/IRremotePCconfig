@@ -43,6 +43,7 @@ void LinkedDevice::initPort(QString portName)
 
 void LinkedDevice::sendCommand(QString command)
 {
+    lastCommand = command;
     // [3] передача данных
     const QByteArray send_data = command.toUtf8();// вообще нет строки, особенно китайский
 
@@ -58,6 +59,34 @@ void LinkedDevice::sendCommand(QString command)
     }
 }
 
+QList<QMap<QString, QVariant>> LinkedDevice::getParsedResponse(QString response)
+{
+    // Делим весь пакет на строки
+    QStringList strings = response.split("\n");
+    QList<QMap<QString, QVariant>> records;
+
+    for (auto &string : strings) {
+        // Строки делим на поля формата <поле>=<значение>
+        QStringList fields = string.split(" ");
+        QMap<QString, QVariant> variables;
+
+        // распознаётся и убирается первое поле с номером строки (идентификатором записи)
+        variables["id"] = fields.takeFirst().toInt();
+
+        // Делим <поле>=<значение> на строковое <поле> и некое <значение>
+        for (auto field : fields) {
+            QStringList pair = field.split("=");
+            variables[pair.first()] = pair.last();
+        }
+
+        records.append(variables);
+    }
+
+    return records;
+}
+
+
+
 void LinkedDevice::onSerialPortDataReceived()
 {
     if (serialPort->bytesAvailable()) {
@@ -66,5 +95,9 @@ void LinkedDevice::onSerialPortDataReceived()
         // Прием передача должна быть последовательной, если она обрабатывается данные байтов, вы можете взять QbyTearray в группу в качестве группы или использовать метод Data () для изменения в форме Char *.
         //ui->textRecv->append(QString::fromUtf8(recv_data));//отображать
         qDebug()<<"Получили:"<<QString::fromUtf8(recv_data);
+
+
+
+
     }
 }
