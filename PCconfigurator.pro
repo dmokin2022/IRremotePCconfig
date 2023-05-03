@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     Model/LinkedDevice.cpp \
+  TerminalFrame.cpp \
     View/View.cpp \
     View/ViewItem.cpp \
     main.cpp \
@@ -28,12 +29,14 @@ HEADERS += \
     Model/IRremoteModel.hpp \
     Model/test_data.h \
     Model/key_data.h \
+  TerminalFrame.hpp \
     View/View.hpp \
     View/ViewItem.hpp \
     #serialport/qserialport.h
 
 FORMS += \
-    MainWindow.ui
+    MainWindow.ui \
+    TerminalFrame.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
