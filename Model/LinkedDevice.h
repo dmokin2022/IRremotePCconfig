@@ -3,32 +3,28 @@
 
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
+
 #include "Model/key_data.h"
 
-class LinkedDevice: public QObject
-{
-    Q_OBJECT
+class LinkedDevice : public QObject {
+  Q_OBJECT
 public:
-    LinkedDevice();
+  LinkedDevice();
 
 private:
-    QSerialPort *serialPort;
-    QSerialPortInfo serialInfo;
-    QStringList getAvailableSerialPorts();
-    void autoConnect();
-    bool deviceIsFoundOnPort(QString portName);
-    void initPort(QString portName);
+  QSerialPort *serialPort;
+  QSerialPortInfo serialInfo;
+  QStringList getAvailableSerialPorts();
+  void autoConnect();
+  bool deviceIsFoundOnPort(QString portName);
+  void initPort(QString portName);
 
-    void sendCommand(QString command);
-    QList<QMap<QString, QVariant> > getParsedResponse(QString response);
-    QString lastCommand;
-
-
+  void sendCommand(QString command);
+  QList<QMap<QString, QVariant>> getParsedResponse(QString response);
+  QString lastCommand;
 
 private slots:
-    void onSerialPortDataReceived();
-
-
+  void onSerialPortDataReceived();
 };
 
-#endif // LINKEDDEVICE_H
+#endif  // LINKEDDEVICE_H

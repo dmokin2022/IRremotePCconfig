@@ -4,6 +4,8 @@
 
 TerminalFrame::TerminalFrame(QWidget *parent) : QFrame(parent), ui(new Ui::TerminalFrame) {
   ui->setupUi(this);
+  ui->lineEdit->setFocus();
+  this->setWindowTitle("Терминал");
 }
 
 TerminalFrame::~TerminalFrame() { delete ui; }
