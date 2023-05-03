@@ -29,8 +29,8 @@
 
 class ViewItem {
 public:
-  ViewItem(key_data_t key, IRremoteModel& model, QScrollArea *scrollArea);
-  QFrame* getViewItemFrame();
+  ViewItem(key_data_t key, IRremoteModel &model, QScrollArea *scrollArea);
+  QFrame *getViewItemFrame();
   void retranslateUi();
   void setViewDataFields(key_data_t key);
   void setViewDataFields(QMap<QString, QVariant> key);
@@ -54,6 +54,7 @@ private:
   QVBoxLayout *verticalLayout_3;
   QVBoxLayout *verticalLayout;
   QFormLayout *formLayoutKey;
+
   QLabel *labelKeyNumberHeader;
   QLabel *labelKeyNumberValue;
   QLabel *labelKeyNameHeader;
@@ -76,10 +77,4 @@ private:
   QLabel *labelDelta;
   QLineEdit *lineEditDeltaIncDec;
   QComboBox *comboBoxValueRef;
-  QLabel *labelAllButtons;
-  QScrollArea *scrollAreaAllButtons;
-  QWidget *scrollAreaWidgetContents;
-  QVBoxLayout *verticalLayout_9;
 };
-
-

@@ -26,16 +26,24 @@
 #include <QtWidgets/QWidget>
 
 #include "Model/IRremoteModel.hpp"
-
+#include "ViewItem.hpp"
 
 class View {
 public:
-  View(QScrollArea* scrollArea, QVBoxLayout *verticalLayout);
+  View(QScrollArea *scrollArea, QVBoxLayout *verticalLayout);
   void showModel();
+  void showModel(QList<QMap<QString, QVariant>>);
+  void showItem(int number);
+
+public slots:
+  void onCommandReceived(QList<QMap<QString, QVariant>> &parsedResponse);
 
 private:
+  QList<ViewItem *> viewItems;
+
   IRremoteModel model;
-  QScrollArea* scrollArea;
+
+  QScrollArea *scrollArea;
   QVBoxLayout *verticalLayout1;
 
   QWidget *centralwidget;
@@ -94,5 +102,3 @@ private:
   QMenuBar *menubar;
   QStatusBar *statusbar;
 };
-
-
